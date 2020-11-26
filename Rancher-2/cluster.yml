@@ -1,0 +1,49 @@
+cluster_name: rancher-cluster
+name: rancher-cluster
+enable_cluster_alerting: true
+enable_cluster_monitoring: true
+ignore_docker_version: true
+
+nodes:
+  - address:  # node ip
+    hostname_override: node1
+    user: root
+    labels:
+      worker: yes
+      location: almaty # your location
+    role: [controlplane, worker, etcd]
+  - address:  # node ip
+    hostname_override: node2
+    user: root
+    labels:
+      worker: yes
+      location: almaty # your location
+    role: [controlplane, worker, etcd]
+  - address:  # node ip
+    hostname_override: node3
+    user: root
+    labels:
+      worker: yes
+      location: almaty # your location
+    role: [controlplane, worker, etcd]
+
+services:
+  etcd:
+    snapshot: true
+    creation: 6h
+    retention: 30h
+  kube-controller:
+    extra_args:
+      terminated-pod-gc-threshold: 100
+  kubelet:
+    extra_args:
+      max-pods: 250
+
+
+ingress:
+  provider: nginx
+  options:
+    use-forwarded-headers: "true"
+
+monitoring:
+  provider: "metrics-server"

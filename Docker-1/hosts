@@ -1,0 +1,12 @@
+[pve]
+pve1 ansible_ssh_host=
+
+[workers]
+node-1 ansible_ssh_host=192.168.9.201
+node-2 ansible_ssh_host=192.168.9.201
+node-3 ansible_ssh_host=192.168.9.201
+
+[storages]
+node-1 ansible_ssh_host=
+node-2 ansible_ssh_host=
+node-3 ansible_ssh_host=

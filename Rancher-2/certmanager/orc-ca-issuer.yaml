@@ -1,0 +1,7 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: ClusterIssuer
+metadata:
+  name: orc-ca-issuer
+spec:
+  ca:
+    secretName: orc-ca-keypair
